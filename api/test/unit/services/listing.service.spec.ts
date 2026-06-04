@@ -1462,6 +1462,61 @@ describe('Testing listing service', () => {
         },
       });
     });
+
+    it('should build select for map view', async () => {
+      prisma.listings.findMany = jest
+        .fn()
+        .mockResolvedValue(mockListingSet(10));
+
+      prisma.listings.count = jest.fn().mockResolvedValue(10);
+
+      const params: ListingsQueryParams = {
+        view: ListingViews.map,
+      };
+
+      await service.list(params);
+
+      expect(prisma.listings.findMany).toHaveBeenCalledWith({
+        skip: 0,
+        take: 10,
+        orderBy: undefined,
+        where: {
+          AND: [],
+        },
+        select: {
+          name: true,
+          id: true,
+          property: true,
+          jurisdictions: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          listingsBuildingAddress: true,
+          listingImages: {
+            include: {
+              assets: true,
+            },
+          },
+          reservedCommunityTypes: true,
+          units: {
+            select: {
+              monthlyRent: true,
+              unitTypes: {
+                select: { numBedrooms: true, name: true },
+              },
+            },
+          },
+        },
+      });
+
+      expect(prisma.listings.count).toHaveBeenCalledWith({
+        where: {
+          AND: [],
+        },
+      });
+    });
   });
 
   describe('Test buildWhereClause helper', () => {
@@ -6166,6 +6221,7 @@ describe('Testing listing service', () => {
         id: 'example id',
         name: 'example name',
       });
+      prisma.userAccounts.findMany = jest.fn().mockResolvedValue([]);
       prisma.$transaction = jest.fn().mockResolvedValue([
         {
           id: 'example id',
@@ -7133,15 +7189,39 @@ describe('Testing listing service', () => {
         },
       ]);
 
-      await service.mapMarkers();
+      await service.mapMarkers({});
 
       expect(prisma.listings.findMany).toHaveBeenCalledWith({
         select: {
           id: true,
-          listingsBuildingAddress: true,
+          listingsBuildingAddress: {
+            select: {
+              latitude: true,
+              longitude: true,
+            },
+          },
         },
         where: {
-          status: ListingsStatusEnum.active,
+          AND: [
+            {
+              OR: [
+                {
+                  status: { equals: ListingsStatusEnum.active },
+                },
+              ],
+            },
+          ],
+          buildingAddressId: {
+            not: null,
+          },
+          listingsBuildingAddress: {
+            latitude: {
+              not: null,
+            },
+            longitude: {
+              not: null,
+            },
+          },
         },
       });
     });
@@ -7311,6 +7391,35 @@ describe('Testing listing service', () => {
         select: { id: true, name: true, status: true },
         where: { id: { in: multiselectQuestionIds } },
       });
+    });
+  });
+
+  describe('Test normalizeScheduledPublishAt helper', () => {
+    const originalTimezone = process.env.TIME_ZONE;
+
+    afterEach(() => {
+      process.env.TIME_ZONE = originalTimezone;
+    });
+
+    it('should convert UTC midnight to midnight in the app timezone (UTC-7, LA summer)', () => {
+      process.env.TIME_ZONE = 'America/Los_Angeles';
+      const utcMidnight = new Date('2026-05-15T00:00:00.000Z');
+      const normalized = service.normalizeScheduledPublishAt(utcMidnight);
+      expect(normalized.toISOString()).toBe('2026-05-15T07:00:00.000Z');
+    });
+
+    it('should convert UTC midnight to midnight in the app timezone (UTC-8, LA winter)', () => {
+      process.env.TIME_ZONE = 'America/Los_Angeles';
+      const utcMidnight = new Date('2026-01-15T00:00:00.000Z');
+      const normalized = service.normalizeScheduledPublishAt(utcMidnight);
+      expect(normalized.toISOString()).toBe('2026-01-15T08:00:00.000Z');
+    });
+
+    it('should preserve the user-selected wall-clock date regardless of input time', () => {
+      process.env.TIME_ZONE = 'America/Los_Angeles';
+      const nonMidnight = new Date('2026-05-15T14:30:00.000Z');
+      const normalized = service.normalizeScheduledPublishAt(nonMidnight);
+      expect(normalized.toISOString()).toBe('2026-05-15T07:00:00.000Z');
     });
   });
 });
