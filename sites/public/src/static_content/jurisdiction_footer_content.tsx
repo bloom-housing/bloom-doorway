@@ -1,6 +1,7 @@
 import { t } from "@bloom-housing/ui-components"
 import { FooterContent, FooterLinks } from "./generic_footer_content"
 import { Link } from "@bloom-housing/ui-seeds"
+import { SocialLinkType } from "./generic_footer_content"
 
 export const getJurisdictionFooterTextContent = (): FooterContent => {
   return {
@@ -31,6 +32,28 @@ export const getJurisdictionFooterTextContent = (): FooterContent => {
       logoAltText: "BAHFA Logo",
       logoUrl: "https://mtc.ca.gov/about-mtc/authorities/bay-area-housing-finance-authority-bahfa",
     },
+    socialLinks: [
+      {
+        icon: SocialLinkType.X,
+        href: "https://twitter.com/mtcbata",
+      },
+      {
+        icon: SocialLinkType.LinkedIn,
+        href: "https://www.linkedin.com/company/metropolitan-transportation-commission",
+      },
+      {
+        icon: SocialLinkType.Facebook,
+        href: "https://www.facebook.com/MTCBATA",
+      },
+      {
+        icon: SocialLinkType.YouTube,
+        href: "https://www.youtube.com/user/mtcabaglibrary",
+      },
+      {
+        icon: SocialLinkType.Instagram,
+        href: "https://www.instagram.com/mtcbata",
+      },
+    ],
   }
 }
 
@@ -39,5 +62,6 @@ export const getJurisdictionFooterLinksContent = (): FooterLinks => {
   return {
     links: [],
     cityString: t("footer.copyright", { year: currentYear }),
+    equalHousingOpportunity: true,
   }
 }
