@@ -15,7 +15,7 @@ export const SiteEyebrow = () => {
   if (tIfExists("nav.eyebrow.text") || tIfExists("nav.eyebrow.url") || imageContent.logoSrc) {
     return (
       <MaxWidthLayout className={styles["eyebrow-wrapper"]}>
-        <div className={styles["eyebrow-container"]}>
+        <div className={styles["eyebrow-container"]} suppressHydrationWarning>
           {imageContent.logoSrc && (
             <a href={imageContent.logoUrl || "/"} className={styles["logo"]}>
               <img
@@ -26,12 +26,16 @@ export const SiteEyebrow = () => {
           )}
 
           {(tIfExists("nav.eyebrow.text") || tIfExists("nav.eyebrow.url")) && (
-            <div className={styles["content-container"]}>
-              {tIfExists("nav.eyebrow.text") && t("nav.eyebrow.text")}
+            <div className={styles["content-container"]} suppressHydrationWarning>
+              {tIfExists("nav.eyebrow.text") && (
+                <span suppressHydrationWarning>{t("nav.eyebrow.text")}</span>
+              )}
               {tIfExists("nav.eyebrow.url") && (
-                <Link className={styles["eyebrow-link"]} href={t("nav.eyebrow.url")}>
-                  {tIfExists("nav.eyebrow.link") ? t("nav.eyebrow.link") : t("nav.eyebrow.url")}
-                </Link>
+                <span suppressHydrationWarning>
+                  <Link className={styles["eyebrow-link"]} href={t("nav.eyebrow.url")}>
+                    {tIfExists("nav.eyebrow.link") ? t("nav.eyebrow.link") : t("nav.eyebrow.url")}
+                  </Link>
+                </span>
               )}
             </div>
           )}
