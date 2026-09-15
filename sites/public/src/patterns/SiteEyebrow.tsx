@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { tIfExists } from "@bloom-housing/shared-helpers"
 import { t } from "@bloom-housing/ui-components"
 import { Link } from "@bloom-housing/ui-seeds"
@@ -10,12 +10,22 @@ import {
 } from "../static_content/jurisdiction_eyebrow_image"
 
 export const SiteEyebrow = () => {
+  // Translation lookups below can differ between the server-rendered markup and the client's
+  // first render, which trips React's hydration mismatch (#418)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
   const imageContent: LogoContent | null = getJurisdictionEyebrowImageContent()
 
   if (tIfExists("nav.eyebrow.text") || tIfExists("nav.eyebrow.url") || imageContent.logoSrc) {
     return (
       <MaxWidthLayout className={styles["eyebrow-wrapper"]}>
-        <div className={styles["eyebrow-container"]} suppressHydrationWarning>
+        <div className={styles["eyebrow-container"]}>
           {imageContent.logoSrc && (
             <a href={imageContent.logoUrl || "/"} className={styles["logo"]}>
               <img
@@ -26,16 +36,12 @@ export const SiteEyebrow = () => {
           )}
 
           {(tIfExists("nav.eyebrow.text") || tIfExists("nav.eyebrow.url")) && (
-            <div className={styles["content-container"]} suppressHydrationWarning>
-              {tIfExists("nav.eyebrow.text") && (
-                <span suppressHydrationWarning>{t("nav.eyebrow.text")}</span>
-              )}
+            <div className={styles["content-container"]}>
+              {tIfExists("nav.eyebrow.text") && t("nav.eyebrow.text")}
               {tIfExists("nav.eyebrow.url") && (
-                <span suppressHydrationWarning>
-                  <Link className={styles["eyebrow-link"]} href={t("nav.eyebrow.url")}>
-                    {tIfExists("nav.eyebrow.link") ? t("nav.eyebrow.link") : t("nav.eyebrow.url")}
-                  </Link>
-                </span>
+                <Link className={styles["eyebrow-link"]} href={t("nav.eyebrow.url")}>
+                  {tIfExists("nav.eyebrow.link") ? t("nav.eyebrow.link") : t("nav.eyebrow.url")}
+                </Link>
               )}
             </div>
           )}
