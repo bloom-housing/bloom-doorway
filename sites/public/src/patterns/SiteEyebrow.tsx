@@ -10,43 +10,41 @@ import {
 } from "../static_content/jurisdiction_eyebrow_image"
 
 export const SiteEyebrow = () => {
-  // Translation lookups below can differ between the server-rendered markup and the client's
-  // first render, which trips React's hydration mismatch (#418)
+  const imageContent: LogoContent | null = getJurisdictionEyebrowImageContent()
+
+  // The translation-driven text/link can differ between the server-rendered markup and the
+  // client's first render, tripping React's hydration mismatch (#418). The logo has no such
+  // dependency, so it renders immediately.
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  const hasText = mounted && (tIfExists("nav.eyebrow.text") || tIfExists("nav.eyebrow.url"))
 
-  const imageContent: LogoContent | null = getJurisdictionEyebrowImageContent()
+  if (!imageContent.logoSrc && !hasText) return null
 
-  if (tIfExists("nav.eyebrow.text") || tIfExists("nav.eyebrow.url") || imageContent.logoSrc) {
-    return (
-      <MaxWidthLayout className={styles["eyebrow-wrapper"]}>
-        <div className={styles["eyebrow-container"]}>
-          {imageContent.logoSrc && (
-            <a href={imageContent.logoUrl || "/"} className={styles["logo"]}>
-              <img
-                src={imageContent.logoSrc}
-                alt={imageContent.logoAltText || "Jurisdiction logo"}
-              />
-            </a>
-          )}
+  return (
+    <MaxWidthLayout className={styles["eyebrow-wrapper"]}>
+      <div className={styles["eyebrow-container"]}>
+        {imageContent.logoSrc && (
+          <a href={imageContent.logoUrl || "/"} className={styles["logo"]}>
+            <img src={imageContent.logoSrc} alt={imageContent.logoAltText || "Jurisdiction logo"} />
+          </a>
+        )}
 
-          {(tIfExists("nav.eyebrow.text") || tIfExists("nav.eyebrow.url")) && (
-            <div className={styles["content-container"]}>
-              {tIfExists("nav.eyebrow.text") && t("nav.eyebrow.text")}
-              {tIfExists("nav.eyebrow.url") && (
-                <Link className={styles["eyebrow-link"]} href={t("nav.eyebrow.url")}>
-                  {tIfExists("nav.eyebrow.link") ? t("nav.eyebrow.link") : t("nav.eyebrow.url")}
-                </Link>
-              )}
-            </div>
-          )}
-        </div>
-      </MaxWidthLayout>
-    )
-  } else return null
+        {hasText && (
+          <div className={styles["content-container"]}>
+            {tIfExists("nav.eyebrow.text") && t("nav.eyebrow.text")}
+            {tIfExists("nav.eyebrow.url") && (
+              <Link className={styles["eyebrow-link"]} href={t("nav.eyebrow.url")}>
+                {tIfExists("nav.eyebrow.link") ? t("nav.eyebrow.link") : t("nav.eyebrow.url")}
+              </Link>
+            )}
+          </div>
+        )}
+      </div>
+    </MaxWidthLayout>
+  )
 }
