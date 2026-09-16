@@ -4,6 +4,11 @@ import { ResourceCards } from "../components/resources/Resources"
 
 export const getJurisdictionResourcesContent = (): ResourceCards | null => {
   return {
+    contactCard: {
+      description: "",
+      departmentTitle: "",
+      email: "",
+    },
     resourceSections: [
       {
         sectionTitle: t("resources.immediateHousingTitle"),
@@ -336,33 +341,31 @@ export const getJurisdictionResourcesContent = (): ResourceCards | null => {
             title={t("resources.relatedHelp.211help")}
             href="https://www.211bayarea.org/"
             content={
-              <>
-                <ul>
-                  <li>{t("resources.relatedHelp.211help1")}</li>
-                  <li>{t("resources.relatedHelp.211help2")}</li>
-                  <li>{t("resources.relatedHelp.211help3")}</li>
-                  <li>{t("resources.relatedHelp.211help4")}</li>
-                  <li>{t("resources.relatedHelp.211help5")}</li>
-                  <li>{t("resources.relatedHelp.211help6")}</li>
-                  <li>{t("resources.relatedHelp.211help7")}</li>
-                  <li>{t("resources.relatedHelp.211help8")}</li>
-                  <li>{t("resources.relatedHelp.211help9")}</li>
-                  <li>{t("resources.relatedHelp.211help10")}</li>
-                  <li>{t("resources.relatedHelp.211help11")}</li>
-                  <li>{t("resources.relatedHelp.211help12")}</li>
-                  <li>{t("resources.relatedHelp.211help13")}</li>
-                  <li>{t("resources.relatedHelp.211help14")}</li>
-                  <li>{t("resources.relatedHelp.211help15")}</li>
-                  <li>{t("resources.relatedHelp.211help16")}</li>
-                  <li>{t("resources.relatedHelp.211help17")}</li>
-                  <li>{t("resources.relatedHelp.211help18")}</li>
-                  <li>{t("resources.relatedHelp.211help19")}</li>
-                  <li>{t("resources.relatedHelp.211help20")}</li>
-                  <li>{t("resources.relatedHelp.211help21")}</li>
-                  <li>{t("resources.relatedHelp.211help22")}</li>
-                  <li>{t("resources.relatedHelp.211help23")}</li>
-                </ul>
-              </>
+              <ul className="ml-5">
+                <li>{t("resources.relatedHelp.211help1")}</li>
+                <li>{t("resources.relatedHelp.211help2")}</li>
+                <li>{t("resources.relatedHelp.211help3")}</li>
+                <li>{t("resources.relatedHelp.211help4")}</li>
+                <li>{t("resources.relatedHelp.211help5")}</li>
+                <li>{t("resources.relatedHelp.211help6")}</li>
+                <li>{t("resources.relatedHelp.211help7")}</li>
+                <li>{t("resources.relatedHelp.211help8")}</li>
+                <li>{t("resources.relatedHelp.211help9")}</li>
+                <li>{t("resources.relatedHelp.211help10")}</li>
+                <li>{t("resources.relatedHelp.211help11")}</li>
+                <li>{t("resources.relatedHelp.211help12")}</li>
+                <li>{t("resources.relatedHelp.211help13")}</li>
+                <li>{t("resources.relatedHelp.211help14")}</li>
+                <li>{t("resources.relatedHelp.211help15")}</li>
+                <li>{t("resources.relatedHelp.211help16")}</li>
+                <li>{t("resources.relatedHelp.211help17")}</li>
+                <li>{t("resources.relatedHelp.211help18")}</li>
+                <li>{t("resources.relatedHelp.211help19")}</li>
+                <li>{t("resources.relatedHelp.211help20")}</li>
+                <li>{t("resources.relatedHelp.211help21")}</li>
+                <li>{t("resources.relatedHelp.211help22")}</li>
+                <li>{t("resources.relatedHelp.211help23")}</li>
+              </ul>
             }
           />,
         ],

@@ -1,4 +1,5 @@
 import { t } from "@bloom-housing/ui-components"
+import { Link } from "@bloom-housing/ui-seeds"
 import Markdown from "markdown-to-jsx"
 import { ContactCardProps } from "../components/shared/ContactCard"
 import { FaqCategory, FaqContent } from "../patterns/FrequentlyAskedQuestions"
@@ -17,9 +18,9 @@ export const getProfessionalPartnersContent = (): FaqContent => {
             <br />
             <br />
             <span>{t("professionalPartners.dev.whatIsTheDoorwayResp2")}</span>
-            <a href="https://partners.housingbayarea.mtc.ca.gov">
-              {t("professionalPartners.dev.whatIsTheDoorwayResp3")}
-            </a>
+            <Link href={t("professionalPartners.partnersSite")}>
+              {t("professionalPartners.partnersSite")}
+            </Link>
           </>
         ),
       },
@@ -36,17 +37,15 @@ export const getProfessionalPartnersContent = (): FaqContent => {
         question: t("professionalPartners.dev.whatIsTheRoleOfDevelopers"),
         answer: (
           <span>
-            {t("professionalPartners.dev.whatIsTheRoleOfDevelopersResp1")}
-            <a href={`mailto:${t("professionalPartners.doorwayEmail")}`}>
-              {t("professionalPartners.dev.whatIsTheRoleOfDevelopersResp2")}
-            </a>
+            {t("professionalPartners.dev.whatIsTheRoleOfDevelopersResp")}
+            <Link href={`mailto:${email}`}>{email}</Link>
           </span>
         ),
       },
       {
         question: t("professionalPartners.dev.whatAreTheBenefitsOfDevelopers"),
         answer: (
-          <ul>
+          <ul className="ml-5">
             <li>{t("professionalPartners.dev.whatAreTheBenefitsOfDevelopersResp1")}</li>
             <li>{t("professionalPartners.dev.whatAreTheBenefitsOfDevelopersResp2")}</li>
             <li>{t("professionalPartners.dev.whatAreTheBenefitsOfDevelopersResp3")}</li>
@@ -71,30 +70,26 @@ export const getProfessionalPartnersContent = (): FaqContent => {
         answer: (
           <>
             {t("professionalPartners.dev.howDoWeListPropertyResp1")}
-            <ul>
+            <ul className="ml-5">
               <li>
                 {t("professionalPartners.dev.howDoWeListPropertyResp2a")}
-                <a href="https://partners.housingbayarea.mtc.ca.gov">
-                  {t("professionalPartners.dev.howDoWeListPropertyResp2b")}
-                </a>
+                <Link href={t("professionalPartners.partnersSite")}>
+                  {t("professionalPartners.partnersSite")}
+                </Link>
               </li>
               <li>
                 {t("professionalPartners.dev.howDoWeListPropertyResp3a")}
-                <a href={`mailto:${t("professionalPartners.doorwayEmail")}`}>
-                  {t("professionalPartners.doorwayEmail")}
-                </a>
+                <Link href={`mailto:${email}`}>{email}</Link>
                 {t("professionalPartners.dev.howDoWeListPropertyResp3b")}
               </li>
               <li>
                 {t("professionalPartners.dev.howDoWeListPropertyResp4")}
-                <ul>
+                <ul className="ml-5">
                   <li>
                     {t("professionalPartners.dev.howDoWeListPropertyResp4a1")}
-                    <a href={`mailto:${t("professionalPartners.doorwayEmail")}`}>
-                      {t("professionalPartners.doorwayEmail")}
-                    </a>
+                    <Link href={`mailto:${email}`}>{email}</Link>
                     {t("professionalPartners.dev.howDoWeListPropertyResp4a2")}
-                    <ul>
+                    <ul className="ml-5">
                       <li>{t("professionalPartners.dev.howDoWeListPropertyResp4aInfo")}</li>
                     </ul>
                   </li>
@@ -102,9 +97,7 @@ export const getProfessionalPartnersContent = (): FaqContent => {
                   <li>{t("professionalPartners.dev.howDoWeListPropertyResp4c")}</li>
                   <li>
                     {t("professionalPartners.dev.howDoWeListPropertyResp4d1")}
-                    <a href={`mailto:${t("professionalPartners.doorwayEmail")}`}>
-                      {t("professionalPartners.doorwayEmail")}
-                    </a>
+                    <Link href={`mailto:${email}`}>{email}</Link>
                     {t("professionalPartners.dev.howDoWeListPropertyResp4d2")}
                   </li>
                 </ul>
@@ -117,9 +110,8 @@ export const getProfessionalPartnersContent = (): FaqContent => {
         question: t("professionalPartners.dev.whatIfIHaveAnAccount"),
         answer: (
           <>
-            {" "}
             {t("professionalPartners.dev.whatIfIHaveAnAccountResp1")}
-            <ul>
+            <ul className="ml-5">
               <li>
                 {t("professionalPartners.dev.whatIfIHaveAnAccountResp2a")}
                 <a href={`mailto:${t("professionalPartners.partnersEmail")}`}>
@@ -135,11 +127,8 @@ export const getProfessionalPartnersContent = (): FaqContent => {
         question: t("professionalPartners.dev.howCanWeGetInvolved"),
         answer: (
           <>
-            {" "}
-            {t("professionalPartners.dev.howCanWeGetInvolvedResp1a")}
-            <a href={`mailto:${t("professionalPartners.doorwayEmail")}`}>
-              {t("professionalPartners.dev.howCanWeGetInvolvedResp1b")}
-            </a>
+            {t("professionalPartners.dev.howCanWeGetInvolvedResp1")}
+            <Link href={`mailto:${email}`}>{email}</Link>
           </>
         ),
       },
@@ -152,15 +141,15 @@ export const getProfessionalPartnersContent = (): FaqContent => {
         question: t("professionalPartners.jurisdictions.whatIsTheRole"),
         answer: (
           <span>
-            {t("professionalPartners.jurisdictions.whatIsTheRoleResp1")}
-            <a href={`mailto:${email}`}>{email}</a>
+            {t("professionalPartners.jurisdictions.whatIsTheRoleResp")}
+            <Link href={`mailto:${email}`}>{email}</Link>
           </span>
         ),
       },
       {
         question: t("professionalPartners.jurisdictions.benefitsOfLocalJurisdictions"),
         answer: (
-          <ul>
+          <ul className="ml-5">
             <li>{t("professionalPartners.jurisdictions.benefitsOfLocalJurisdictionsResp1")}</li>
             <li>{t("professionalPartners.jurisdictions.benefitsOfLocalJurisdictionsResp2")}</li>
             <li>{t("professionalPartners.jurisdictions.benefitsOfLocalJurisdictionsResp3")}</li>
@@ -177,7 +166,7 @@ export const getProfessionalPartnersContent = (): FaqContent => {
         answer: (
           <span>
             {t("professionalPartners.jurisdictions.howCanWeGetInvolvedResp1")}
-            <a href={`mailto:${email}`}>{email}</a>
+            <Link href={`mailto:${email}`}>{email}</Link>
             {t("professionalPartners.jurisdictions.howCanWeGetInvolvedResp2")}
           </span>
         ),

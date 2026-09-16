@@ -1,4 +1,5 @@
 import { t } from "@bloom-housing/ui-components"
+import { Link } from "@bloom-housing/ui-seeds"
 import Markdown from "markdown-to-jsx"
 import { FaqCategory, FaqContent } from "../patterns/FrequentlyAskedQuestions"
 
@@ -15,7 +16,7 @@ export const getHousingBasicsContent = (): FaqContent => {
         answer: (
           <span>
             {t("housingBasics.iNeedMoreHelpResp")}
-            <a href="/additional-resources">{t("housingBasics.iNeedMoreHelpRespLink")}</a>.
+            <Link href={"/additional-resources"}>{t("housingBasics.iNeedMoreHelpRespLink")}</Link>.
             <br />
             <br />
             {t("housingBasics.iNeedMoreHelpRespTip")}
@@ -42,10 +43,10 @@ export const getHousingBasicsContent = (): FaqContent => {
         question: t("housingBasics.seeListingsHousehold"),
         answer: (
           <span>
-            <ol className="text__medium-normal numbered-list-small ml-5">
+            <ol className="ml-5">
               <li>{t("housingBasics.seeListingsHouseholdResp1")}</li>
               <li>{t("housingBasics.seeListingsHouseholdResp2")}</li>
-              <ul className="text__medium-normal list-disc ml-5 mb-0">
+              <ul className="ml-5">
                 <li>{t("housingBasics.seeListingsHouseholdResp2a")}</li>
                 <li>{t("housingBasics.seeListingsHouseholdResp2b")}</li>
                 <li>{t("housingBasics.seeListingsHouseholdResp2c")}</li>
@@ -60,12 +61,12 @@ export const getHousingBasicsContent = (): FaqContent => {
         question: t("housingBasics.applyLotteryWaitlist"),
         answer: (
           <span>
-            <ol className="text__medium-normal numbered-list-small ml-5">
+            <ol className="ml-5">
               <li>{t("housingBasics.applyLotteryWaitlistResp1")}</li>
               <li>{t("housingBasics.applyLotteryWaitlistResp2")}</li>
               <li>
                 {t("housingBasics.applyLotteryWaitlistResp3")}
-                <ul className="text__medium-normal list-disc ml-5 mb-0">
+                <ul className="ml-5">
                   <li>{t("housingBasics.applyLotteryWaitlistResp3a")}</li>
                   <li>{t("housingBasics.applyLotteryWaitlistResp3b")}</li>
                 </ul>
@@ -77,7 +78,7 @@ export const getHousingBasicsContent = (): FaqContent => {
                   overrides: {
                     ul: {
                       component: ({ children, ...props }) => (
-                        <ul {...props} className="list-disc ml-5">
+                        <ul {...props} className="ml-5">
                           {children}
                         </ul>
                       ),
@@ -100,11 +101,11 @@ export const getHousingBasicsContent = (): FaqContent => {
             <br />
             <br />
             {t("housingBasics.checkApplicationsResp1")}
-            <ul className="text__medium-normal list-disc ml-5">
+            <ul className="ml-5">
               <li>
-                <a href="https://housing.sanjoseca.gov" target="_blank">
-                  {t("housingBasics.checkApplicationsResp2")}
-                </a>
+                <Link href={"https://housing.sanjoseca.gov"}>
+                  {t("housingBasics.checkApplicationsResp2")}{" "}
+                </Link>
               </li>
             </ul>
           </span>
