@@ -73,7 +73,7 @@ const Layout = (props) => {
         <SiteHeader
           imageOnly={true}
           logoSrc="/images/doorway-logo-partners.svg"
-          // title={t("nav.siteTitlePartners")}
+          title={t("nav.siteTitlePartners")}
           logoWidth={"medium"}
           menuLinks={menuLinks}
           siteHeaderWidth={"wide"}
