@@ -9,7 +9,7 @@ LIMIT 1;
 -- New jurisdiction fields
 UPDATE jurisdictions
 SET visible_spoken_languages = ARRAY ['chineseCantonese','chineseMandarin','english','filipino','korean','russian','spanish','vietnamese','notListed']::"spoken_language_enum" [],
-  visible_household_member_relationships = ARRAY ['spousePartner','girlfriendBoyfriend','child','parent','friend','brotherSister','cousin','auntUncle','nephewNiece','grandparentGreatGrandparent','liveInAide','other','aideOrAttendant']::"household_member_relationship_enum" [],
+  visible_household_member_relationships = ARRAY ['spousePartner','girlfriendBoyfriend','child','parent','friend','brotherSister','cousin','auntUncle','nephewNiece','grandparentGreatGrandparent','liveInAide','aideOrAttendant','other']::"household_member_relationship_enum" [],
   visible_accessibility_priority_types = ARRAY ['mobility','hearing','vision','hearingAndVision','mobilityAndHearing','mobilityAndVision','mobilityHearingAndVision']::"unit_accessibility_priority_type_enum" [],
   updated_at = now();
 
