@@ -1,6 +1,6 @@
 import { t } from "@bloom-housing/ui-components"
 import Markdown from "markdown-to-jsx"
-import Link from "next/link"
+import { Link } from "@bloom-housing/ui-seeds"
 import { FaqCategory, FaqContent } from "../patterns/FrequentlyAskedQuestions"
 
 export const getJurisdictionFaqContent = (): FaqContent => {
@@ -21,13 +21,13 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             </b>
             <br />
             <Markdown>{t("faq.neededIdentificationResp4")}</Markdown>
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.neededIdentificationResp4a")}</li>
               <li>{t("faq.neededIdentificationResp4b")}</li>
             </ul>
             <br />
             {t("faq.neededIdentificationResp5")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.neededIdentificationResp5a")}</li>
               <li>{t("faq.neededIdentificationResp5b")}</li>
             </ul>
@@ -44,7 +44,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             <b>{t("faq.paperworkRespIncomeTitle")}</b>
             <br />
             {t("faq.paperworkRespIncomeHeader")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.paperworkRespIncome1")}</li>
               <li>{t("faq.paperworkRespIncome2")}</li>
               <li>{t("faq.paperworkRespIncome3")}</li>
@@ -54,7 +54,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             </ul>
             <br />
             <b>{t("faq.paperworkRespExpensesTitle")}</b>
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.paperworkRespExpenses1")}</li>
               <li>{t("faq.paperworkRespExpenses2")}</li>
               <li>{t("faq.paperworkRespExpenses3")}</li>
@@ -85,7 +85,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             <b>{t("faq.sizeUnitResp1")}</b>
             <br />
             {t("faq.sizeUnitResp2")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.sizeUnitResp3")}</li>
               <li>{t("faq.sizeUnitResp4")}</li>
               <li>{t("faq.sizeUnitResp5")}</li>
@@ -97,7 +97,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
         question: t("faq.improveChances"),
         answer: (
           <>
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.improveChancesResp1")}</li>
               <li>{t("faq.improveChancesResp2")}</li>
               <li>
@@ -122,7 +122,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
         answer: (
           <>
             {t("faq.setAsideResp1")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.setAsideResp2")}</li>
               <li>{t("faq.setAsideResp3")}</li>
               <li>{t("faq.setAsideResp4")}</li>
@@ -146,7 +146,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
         answer: (
           <>
             {t("faq.selectionsResp")}
-            <ul>
+            <ul className="ml-5">
               <li>
                 <b>{t("faq.selectionsResp1")}</b>
                 {t("faq.selectionsResp1b")}
@@ -167,7 +167,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             <br />
             <br />
             {t("faq.longProcessResp2")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.longProcessResp3")}</li>
               <li>{t("faq.longProcessResp4")}</li>
               <li>{t("faq.longProcessResp5")}</li>
@@ -185,7 +185,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
         answer: (
           <>
             {t("faq.selectedResp1")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.selectedResp2")}</li>
               <li>{t("faq.selectedResp3")}</li>
             </ul>
@@ -196,7 +196,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
         question: t("faq.remainEligible"),
         answer: (
           <>
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.remainEligibleResp1")}</li>
               <li>{t("faq.remainEligibleResp2")}</li>
             </ul>
@@ -214,7 +214,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
         answer: (
           <>
             {t("faq.whatMakesAffordableResp")}
-            <ul>
+            <ul className="ml-5">
               <li>
                 <b>{t("faq.whatMakesAffordableResp1")}</b>
                 {t("faq.whatMakesAffordableResp1b")}
@@ -229,7 +229,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             <br />
             <br />
             {t("faq.whatMakesAffordableResp4")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.whatMakesAffordableResp5")}</li>
               <li>{t("faq.whatMakesAffordableResp6")}</li>
               <li>{t("faq.whatMakesAffordableResp7")}</li>
@@ -254,7 +254,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             <br />
             <br />
             {t("faq.incomeAffectResp5")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.incomeAffectResp6")}</li>
               <li>{t("faq.incomeAffectResp7")}</li>
             </ul>
@@ -270,7 +270,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
         answer: (
           <>
             {t("faq.scammedResp")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.scammedResp1")}</li>
               <li>{t("faq.scammedResp2")}</li>
             </ul>
@@ -311,7 +311,7 @@ export const getJurisdictionFaqContent = (): FaqContent => {
             <br />
             <br />
             {t("faq.lotteryResults.orderResp2")}
-            <ul>
+            <ul className="ml-5">
               <li>{t("faq.lotteryResults.orderList1")}</li>
               <li>{t("faq.lotteryResults.orderList2")}</li>
               <li>{t("faq.lotteryResults.orderList3")}</li>
