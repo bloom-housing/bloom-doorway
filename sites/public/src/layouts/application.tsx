@@ -7,7 +7,9 @@ import { Message, Toast, Icon } from "@bloom-housing/ui-seeds"
 import { MenuLink, t, SiteHeader as UICSiteHeader } from "@bloom-housing/ui-components"
 import { CommonMessageVariant } from "@bloom-housing/ui-seeds/src/blocks/shared/CommonMessage"
 import { AuthContext, MessageContext } from "@bloom-housing/shared-helpers"
+import { useBrand } from "../lib/BrandContext"
 import {
+  BrandDTO,
   FeatureFlag,
   FeatureFlagEnum,
   User,
@@ -217,8 +219,18 @@ interface LayoutProps {
   pageTitle?: string
 }
 
+export const headerLogo = (brand: BrandDTO | null) =>
+  brand?.logoUrl ? (
+    <img src={brand.logoUrl} alt="" />
+  ) : (
+    <Icon size={"lg"} className={styles["jurisdiction-icon"]}>
+      <img src="/images/doorway-logo.png" alt={t("nav.logoAlt")} />
+    </Icon>
+  )
+
 const Layout = (props: LayoutProps) => {
   const { profile, signOut } = useContext(AuthContext)
+  const brand = useBrand()
   const { toastMessagesRef, addToast } = useContext(MessageContext)
   const router = useRouter()
   const featureFlags = useJurisdictionFeatureFlags()
@@ -284,11 +296,7 @@ const Layout = (props: LayoutProps) => {
                 featureFlags
               )}
               titleLink={"/"}
-              logo={
-                <Icon size={"lg"} className={styles["jurisdiction-icon"]}>
-                  <img src="/images/doorway-logo.png" alt={t("nav.logoAlt")} />
-                </Icon>
-              }
+              logo={headerLogo(brand)}
               mainContentId="main-content"
               showMessageBar={false}
               banners={[
