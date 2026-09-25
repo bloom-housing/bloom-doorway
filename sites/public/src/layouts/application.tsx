@@ -221,11 +221,13 @@ interface LayoutProps {
 
 export const headerLogo = (brand: BrandDTO | null) =>
   brand?.logoUrl ? (
-    <img src={brand.logoUrl} alt="" />
+    <img src={brand.logoUrl} alt="" data-testid="brand-header-logo" />
   ) : (
-    <Icon size={"lg"} className={styles["jurisdiction-icon"]}>
-      <img src="/images/doorway-logo.png" alt={t("nav.logoAlt")} />
-    </Icon>
+    <div data-testid="fallback-header-logo">
+      <Icon size={"lg"} className={styles["jurisdiction-icon"]}>
+        <img src="/images/doorway-logo.png" alt={t("nav.logoAlt")} />
+      </Icon>
+    </div>
   )
 
 const Layout = (props: LayoutProps) => {
